@@ -14,43 +14,60 @@ export class TodoService {
       isCompleted: false,
       isArchived: false,
       endDate: '6/6/2020',
+      selected: true,
     },
     {
       title: 'Cormorant, pied',
       description: 'Phalacrocorax varius',
-      isCompleted: true,
+      isCompleted: false,
       isArchived: false,
       endDate: '6/5/2020',
+      selected: false,
     },
     {
       title: 'Common wolf',
       description: 'Canis lupus',
-      isCompleted: true,
-      isArchived: true,
+      isCompleted: false,
+      isArchived: false,
       endDate: '2/11/2021',
+      selected: false,
     },
     {
       title: 'Duiker, gray',
       description: 'Sylvicapra grimma',
-      isCompleted: true,
-      isArchived: true,
+      isCompleted: false,
+      isArchived: false,
       endDate: '9/7/2020',
+      selected: false,
     },
     {
       title: 'Paca',
       description: 'Agouti paca',
-      isCompleted: true,
+      isCompleted: false,
       isArchived: false,
       endDate: '7/31/2020',
+      selected: false,
     }
   ];
 
   // tslint:disable-next-line:variable-name
   private _todoSubject: BehaviorSubject<Array<ITodo>> = new BehaviorSubject(this.mock);
 
+  // tslint:disable-next-line:variable-name
+  private _singleTodoSubject: BehaviorSubject<ITodo> = new BehaviorSubject<ITodo>(this.mock[0]);
+
   constructor() { }
 
   public getTodos(): Observable<Array<ITodo>>{
       return this._todoSubject.asObservable();
+  }
+
+  public getSelectedTodo(): Observable<ITodo>{
+    return this._singleTodoSubject.asObservable();
+  }
+
+  // tslint:disable-next-line:typedef
+  public setSelectedTodo(todo: ITodo){
+    this._singleTodoSubject.next(todo);
   }
 }

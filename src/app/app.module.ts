@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './meterial/meterial.module';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     TodoListComponent,
     HeaderComponent,
+    TodoComponent,
   ],
   imports: [
     BrowserModule,

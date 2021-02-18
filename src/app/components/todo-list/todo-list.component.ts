@@ -19,11 +19,11 @@ export class TodoListComponent implements OnInit , OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(private todoService: TodoService) {}
- 
 
   ngOnInit(): void {
     this.subscription.add(
-      this.todoService.getTodos().subscribe(data =>{
+      this.todoService.getTodos().subscribe(data => {
+        console.log(data);
         this.todos = data;
       })
     );
@@ -33,6 +33,17 @@ export class TodoListComponent implements OnInit , OnDestroy {
     this.subscription.unsubscribe();
   }
 
+
+  onTodoClick(todo: ITodo, index: number): void {
+    this.todoService.setSelectedTodo(todo);
+    // tslint:disable-next-line:no-shadowed-variable
+    this.todos.forEach((todo) => {
+        if (todo.selected){
+         todo.selected = false;
+        }
+     });
+    this.todos[index].selected = true;
+  }
 }
 
 const temp = [
