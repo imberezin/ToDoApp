@@ -9,6 +9,7 @@ export class TodoService {
 
   private mock: ITodo[] = [
     {
+      id: 1,
       title: 'Tokay gecko',
       description: 'Gekko gecko',
       isCompleted: false,
@@ -17,6 +18,7 @@ export class TodoService {
       selected: true,
     },
     {
+      id: 2,
       title: 'Cormorant, pied',
       description: 'Phalacrocorax varius',
       isCompleted: false,
@@ -25,6 +27,7 @@ export class TodoService {
       selected: false,
     },
     {
+      id: 3,
       title: 'Common wolf',
       description: 'Canis lupus',
       isCompleted: false,
@@ -33,6 +36,7 @@ export class TodoService {
       selected: false,
     },
     {
+      id: 4,
       title: 'Duiker, gray',
       description: 'Sylvicapra grimma',
       isCompleted: false,
@@ -41,6 +45,7 @@ export class TodoService {
       selected: false,
     },
     {
+      id: 5,
       title: 'Paca',
       description: 'Agouti paca',
       isCompleted: false,
