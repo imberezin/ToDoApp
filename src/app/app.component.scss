@@ -4,11 +4,18 @@
         height: calc(100vh - 100px);
         display: flex;
         gap: 10px;
+
+        .list-container{
+            width: 25%;
+        }
+        .todo-container{
+            width: 75%;
+        }
+        .add-new-todo-btn{
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+        }
     }
-    .list-container{
-        width: 25%;
-    }
-    .todo-container{
-        width: 75%;
-    }
+    
 }
