@@ -1,6 +1,5 @@
-import { OnDestroy } from '@angular/core';
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ITodo } from 'src/app/models/todo.interface';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -9,25 +8,22 @@ import { TodoService } from 'src/app/services/todo.service';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit, OnDestroy {
+export class TodoComponent implements OnInit {
 
-  public todo: ITodo;
+  // tslint:disable-next-line:variable-name
+  private _todo: ITodo;
 
-  private subscription: Subscription = new Subscription();
+  @Input() set todo(todo: ITodo){
+    this._todo = todo;
+  }
+  // tslint:disable-next-line:typedef
+  get todo(){
+    return this._todo;
+  }
 
   constructor(private todoService: TodoService) { }
 
-  ngOnInit(): void {
-    this.subscription.add(
-      this.todoService.getSelectedTodo().subscribe(data => {
-        this.todo = data;
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  ngOnInit(): void {}
 
   public onCompleteTodo(todo: ITodo): void {
     todo.isCompleted = true;
@@ -36,4 +32,5 @@ export class TodoComponent implements OnInit, OnDestroy {
   public onArchiveTodo(): void {
     this.todo.isArchived = true;
   }
+  
 }
