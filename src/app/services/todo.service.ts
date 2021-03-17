@@ -18,6 +18,16 @@ export class TodoService {
   constructor() { }
 
   public getTodos(): Observable<Array<ITodo>>{
+      if (!this._todoSubject.value.length){
+        const todosString = localStorage.getItem('todos');
+        if (todosString){
+          const existingTodos: Array<ITodo> = JSON.parse(todosString);
+          existingTodos[0].selected = true;
+          this._todoSubject.next(existingTodos);
+          this._singleTodoSubject.next(existingTodos[0])
+       }
+      }
+
       return this._todoSubject.asObservable();
   }
 
@@ -31,9 +41,14 @@ export class TodoService {
   }
 
   public addNewTodo(todo: ITodo): void {
+    console.log(todo);
+
     const existingTodos: Array<ITodo> = this._todoSubject.value;
+    console.log(existingTodos);
+
     existingTodos.push(todo);
     this._todoSubject.next(existingTodos);
+    localStorage.setItem("todos", JSON.stringify(existingTodos));
   }
 }
 

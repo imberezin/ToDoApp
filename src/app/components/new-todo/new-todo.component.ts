@@ -26,23 +26,22 @@ export class NewTodoComponent implements OnInit {
     console.log(this.form);
     console.log(this.form.value);  // { first: '', last: '' }
 
-    const formValues = this.form.value;
+    if (this.form.valid){
+      const formValues = this.form.value;
 
-    const newTodo: ITodo = {
-      id: uuidv4(),
-      title: formValues.title,
-      description: formValues.description,
-      endDate: formValues.date,
-      isArchived: false,
-      isCompleted: false,
-      selected: false,
+      const newTodo: ITodo = {
+        id: uuidv4(),
+        title: formValues.title,
+        description: formValues.description,
+        endDate: formValues.date,
+        isArchived: false,
+        isCompleted: false,
+        selected: false,
+      }
+      // console.log(newTodo);
+      this.todoService.addNewTodo(newTodo);
+      this.dialog.closeAll();
+  
     }
-    
-    this.todoService.addNewTodo(newTodo);
-    this.dialog.closeAll();
-    // tslint:disable-next-line:prefer-const
-    // let newTodo: ITodo;
-    // newTodo.title = this.form.controls['title'];
-
   }
 }
